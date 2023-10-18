@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       Hello NextJS
-      <Link href="about">About</Link>
+      <Link href="todo">Todo</Link>
     </main>
   );
 }
