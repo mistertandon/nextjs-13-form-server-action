@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import { addToDoHandler } from "@/actions/todoActions";
-import TodoButton from "./TodoButton";
+import { TodoButton } from "./index";
 const ToDoForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
   return (
@@ -16,9 +16,9 @@ const ToDoForm = () => {
         }}
       >
         <input name="title" type="text" />
-        <button>Submit</button>
+        {/* <button>Submit</button> */}
+        <TodoButton />
       </form>
-      <TodoButton />
     </>
   );
 };
