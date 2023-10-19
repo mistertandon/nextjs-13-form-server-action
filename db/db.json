@@ -1,6 +1,6 @@
 {
-  "posts": [
-    { "id": 1, "title": "One", "author": "parvesh" },
-    { "id": 1, "title": "Two", "author": "mistertandon" }
+  "todo": [
+    { "id": 1, "title": "One" },
+    { "id": 1, "title": "Two" }
   ]
 }
