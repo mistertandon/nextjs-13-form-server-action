@@ -1,9 +1,19 @@
 "use client";
-import React, { useRef } from "react";
+import React, {
+  useRef,
+  experimental_useOptimistic as useOptimistic,
+} from "react";
+
 import { addToDoHandler } from "@/actions/todoActions";
 import { TodoButton } from "./index";
 const ToDoForm = ({ todos }: any) => {
   const formRef = useRef<HTMLFormElement>(null);
+  const [optimisticTodos, addOptimisticTodo] = useOptimistic(
+    todos,
+    (state: any, newTodo: any) => {
+      return [...state, newTodo];
+    }
+  );
   return (
     <>
       <div>ToDo Form</div>
@@ -11,6 +21,10 @@ const ToDoForm = ({ todos }: any) => {
       <form
         ref={formRef}
         action={async (formData) => {
+          addOptimisticTodo({
+            id: Math.random(),
+            title: formData.get("title"),
+          });
           const result: any = await addToDoHandler(formData);
 
           if (result?.error) {
@@ -25,7 +39,7 @@ const ToDoForm = ({ todos }: any) => {
         <TodoButton />
       </form>
       {Array.isArray(todos) &&
-        todos.map(({ title }: any, idx: number) => (
+        optimisticTodos.map(({ title }: any, idx: number) => (
           <div key={idx}>{title}</div>
         ))}
     </>

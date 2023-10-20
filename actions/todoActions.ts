@@ -6,7 +6,7 @@ const addToDoHandler = async (formData: FormData) => {
   try {
     const title = formData.get("title");
 
-    let response = await fetch("http://localhost:3000/api/todo", {
+    let response = await fetch("http://localhost:3000/api/todo1", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,7 +16,8 @@ const addToDoHandler = async (formData: FormData) => {
     response = await response.json();
     revalidatePath("/todo");
     return response;
-  } catch (e:any) {
+  } catch (e: any) {
+    revalidatePath("/todo");
     console.log("ERROR", e);
     return { error: e.message };
   }
