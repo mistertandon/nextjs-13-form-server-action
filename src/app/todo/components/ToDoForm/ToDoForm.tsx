@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { addToDoHandler } from "@/actions/todoActions";
 import { TodoButton } from "./index";
-const ToDoForm = () => {
+const ToDoForm = ({ todos }: any) => {
   const formRef = useRef<HTMLFormElement>(null);
   return (
     <>
@@ -24,6 +24,10 @@ const ToDoForm = () => {
         {/* <button>Submit</button> */}
         <TodoButton />
       </form>
+      {Array.isArray(todos) &&
+        todos.map(({ title }: any, idx: number) => (
+          <div key={idx}>{title}</div>
+        ))}
     </>
   );
 };

@@ -4,14 +4,11 @@ const ToDoPage = async () => {
     cache: "no-store",
   });
 
-  const todo = await todoRes.json();
+  const todos = await todoRes.json();
 
   return (
     <>
-      <ToDoForm />
-      {todo.map(({ title }: any, idx: number) => (
-        <div key={idx}>{title}</div>
-      ))}
+      <ToDoForm todos={todos} />
     </>
   );
 };
