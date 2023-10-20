@@ -11,7 +11,12 @@ const ToDoForm = () => {
       <form
         ref={formRef}
         action={async (formData) => {
-          await addToDoHandler(formData);
+          const result: any = await addToDoHandler(formData);
+
+          if (result?.error) {
+            console.log("Error occurred in API call", result?.error?.message);
+          }
+
           formRef?.current?.reset();
         }}
       >
